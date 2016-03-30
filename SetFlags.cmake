@@ -127,6 +127,11 @@ macro(set_flags)
 	if(LINUX AND NOT CROSSCOMPILE)
 		add_flags_cxx("-march=native")
 	endif()
+	
+	# Statically link if required.
+	if(LINUX AND STATICLINK)
+		add_flags_lnk("-static")
+	endif()
 
 	if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 		get_clang_version()
